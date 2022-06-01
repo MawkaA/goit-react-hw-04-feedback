@@ -1,0 +1,16 @@
+.container {
+    width:50%;
+    font-size:20px;
+    color:rgb(26, 24, 24);
+    font-weight:bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-left: 50px;
+}
+
+.paragraph{
+    margin-left: 50px;
+}

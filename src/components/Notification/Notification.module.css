@@ -1,0 +1,15 @@
+.notificationContainer{
+    width:50%;
+    font-size:20px;
+    color:rgb(160, 23, 23);
+    font-weight:bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-left: 50px;
+}
+

@@ -1,0 +1,15 @@
+.section{
+    margin-bottom: 50px;
+}
+
+.section:last-child{
+    margin-bottom: 0;
+}
+
+.title{
+    font-size: 30px;
+    color: rgb(229, 124, 142);
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
