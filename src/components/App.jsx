@@ -1,51 +1,52 @@
-import React, { Component } from 'react';
+import React, {  useState } from 'react';
 import Section from './Section/Section';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
 import Notification from './Notification/Notification';
 
+export default function App (){
 
-const options =["good", "neutral","bad"];
-class App extends Component {
-  static defaultProps = {
-    step: 1,
+
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const handleFeedbackChanger = (options) => {
+    switch (options) {
+      case "good":
+        setGood((good) => good + 1);
+        break;
+      case "neutral":
+        setNeutral((neutral) => neutral + 1);
+        break;
+      case "bad":
+        setBad((bad) => bad + 1);
+        break;
+
+      default:
+        return;
+    }
   };
 
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-
-  countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
+  let countTotalFeedback = () => {
     let total = good + neutral + bad;
-
     return total;
   };
 
-  countPositiveFeedbackPercentage = () => {
-    const { good, neutral, bad } = this.state;
+  let countPositiveFeedbackPercentage = () => {
     let positivePercentage = (good / (good + neutral + bad)) * 100;
-
     return positivePercentage.toFixed();
   };
 
-  handleFeedbackChanger = e => {
-    const { step } = this.props;
-    const { name } = e.target;
+  const options = ["good", "neutral", "bad"];
+  const total = countTotalFeedback();
+  const percent = countPositiveFeedbackPercentage();
 
-    this.setState(prevState => ({ [name]: prevState[name] + step }));
-  };
-
-  render() {
-    const { good, bad, neutral } = this.state;
-
-    return (
+  return (
       <>
         <Section title="Please leave feedback: ">
           <FeedbackOptions
-            onLeaveFeedback={this.handleFeedbackChanger}
+            onLeaveFeedback={handleFeedbackChanger}
             options={options}
           />
         </Section>
@@ -55,13 +56,12 @@ class App extends Component {
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              total={total}
+              positivePercentage={percent}
             />
           )) || <Notification message="There is no feedback" />}
         </Section>
       </>
     );
-  }
+  
 }
-export default App;
