@@ -1,26 +1,25 @@
 import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
+import {nanoid} from 'nanoid';
 
-const FeedbackOptions = ({ options, onClick }) => {
-    return (
-        <ul className={css.list}>
-             {options.map(option => (
-            <li className={css.item} key={option}>
-                <button onClick={onClick}
-                        className={css.btn}
-                        name={option}
-                        type="button"> 
-                {option}
-                </button>
-            </li>
-            ))}
-        </ul>
-    )
+const FeedbackOptions = ({ options, handleCounter }) => {
+    const buttons = options.map(option => (
+        <li className={css.item} key={nanoid()}>
+          <button
+            type="button"
+            className={css.btn}
+            onClick={() => handleCounter(option)}
+          >
+            {option}
+          </button>
+        </li>
+      ));
+      return <ul className={css.list}>{buttons}</ul>;
 }
 
 FeedbackOptions.propTypes = {
 options: PropTypes.arrayOf(PropTypes.string).isRequired,
-onClick: PropTypes.func.isRequired,
+handleCounter: PropTypes.func.isRequired,
 }
 
 export default FeedbackOptions;
